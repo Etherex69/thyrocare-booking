@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Thyrocare Home Collection Booking</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial; padding:20px; background:#f4f6f9;}
+.container {background:white; padding:20px; border-radius:10px; max-width:600px; margin:auto;}
+h2 {text-align:center;}
+input, select, textarea, button {
+  width:100%; padding:10px; margin:8px 0;
+  border-radius:5px; border:1px solid #ccc;
+  box-sizing: border-box;
+}
+button {
+  background:#4CAF50; color:white; border:none;
+  font-size:16px; cursor:pointer;
+}
+button:hover {background:#45a049;}
+.note {font-size:14px; color:green; margin-top:-10px; margin-bottom:15px;}
+label {
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Thyrocare Blood Test Booking</h2>
+
+  <p><b>Home Collection Available</b></p>
+  <p class="note">100% Reliable Service</p>
+
+  <p><b>Step 1:</b> Click below to pay ₹399</p>
+
+  <button onclick="payNow()">
+    Pay ₹399 Now
+  </button>
+
+  <p><b>Step 2:</b> After payment, fill details below.</p>
+
+  <p><small>* Booking confirmed after payment verification.</small></p>
+
+  <form id="bookingForm">
+
+    <input type="text" placeholder="Beneficiary Name" name="name" required>
+    <input type="number" placeholder="Age" name="age" required>
+
+    <select name="gender" required>
+      <option value="">Select Gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+
+    <textarea placeholder="Address with Nearest Landmark" name="address" required></textarea>
+    <input type="text" placeholder="Pincode" name="pincode" required>
+    <input type="text" placeholder="Mobile Number" name="mobile" required>
+    <input type="email" placeholder="Email ID" name="email">
+
+    <label>Appointment Date</label>
+    <input type="date" name="date" required>
+
+    <label>Appointment Time</label>
+    <input type="time" name="time" required>
+
+    <input type="hidden" name="doctor" value="N.A">
+
+    <button type="submit">Submit Booking</button>
+
+  </form>
+</div>
+
+<script>
+function payNow() {
+  window.location.href = "upi://pay?pa=Q56868194@ybl&pn=aditya%20sharma&am=399&cu=INR&tn=Thyrocare%20Home%20Collection";
+}
+
+document.getElementById("bookingForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  var formData = new FormData(this);
+  var data = {};
+  formData.forEach((value, key) => data[key] = value);
+
+  fetch("https://script.google.com/macros/s/AKfycbweMmbxyCaBUssndRkLrGxvIJIFYwjTnmdG6Ic-z1tT6XNWOF2SBQymVmKj_GEFMKCT/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(res => {
+    alert("Booking Submitted Successfully!");
+    document.getElementById("bookingForm").reset();
+  })
+  .catch(error => {
+    alert("Error submitting form. Please try again.");
+  });
+});
+</script>
+
+</body>
+</html>
