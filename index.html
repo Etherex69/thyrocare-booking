@@ -97,7 +97,39 @@ document.getElementById("bookingForm").addEventListener("submit", function(e){
   });
 });
 </script>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20want%20to%20book%20Thyrocare%20home%20collection." 
+   class="whatsapp-float" 
+   target="_blank">
+   💬
+</a>
+
+<style>
+.whatsapp-float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:20px;
+  right:20px;
+  background-color:#25D366;
+  color:#FFF;
+  border-radius:50%;
+  text-align:center;
+  font-size:28px;
+  line-height:60px;
+  box-shadow:2px 2px 10px rgba(0,0,0,0.3);
+  z-index:1000;
+  text-decoration:none;
+  transition:0.3s ease;
+}
+
+.whatsapp-float:hover{
+  background-color:#1ebe5d;
+  transform:scale(1.1);
+}
+</style>
 
 </body>
 </html>
+
 
